@@ -26,3 +26,21 @@ ion-menu-button {
 #container a {
   text-decoration: none;
 }
+
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  padding: 16px;
+}
+
+.responsive-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.responsive-card img {
+  width: 100%;
+  height: auto;
+}

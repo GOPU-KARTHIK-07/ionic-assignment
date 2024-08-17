@@ -1,20 +1,3 @@
-// import { Component, inject, OnInit } from '@angular/core';
-// import { ActivatedRoute } from '@angular/router';
-
-// @Component({
-//   selector: 'app-folder',
-//   templateUrl: './folder.page.html',
-//   styleUrls: ['./folder.page.scss'],
-// })
-// export class FolderPage implements OnInit {
-//   public folder!: string;
-//   private activatedRoute = inject(ActivatedRoute);
-//   constructor() {}
-
-//   ngOnInit() {
-//     this.folder = this.activatedRoute.snapshot.paramMap.get('id') as string;
-//   }
-// }
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
@@ -26,9 +9,10 @@ import { AppComponent } from '../app.component';
   styleUrls: ['./folder.page.scss'],
 })
 export class FolderPage implements OnInit {
-  public folder: string=" ";
-  public username: string='';
-  public password: string='';
+  public folder: string = '';
+  public username: string = '';
+  public password: string = '';
+  public cards: any[] = [];
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -38,7 +22,17 @@ export class FolderPage implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.folder = this.activatedRoute.snapshot.paramMap.get('id')?? '';
+    this.folder = this.activatedRoute.snapshot.paramMap.get('id') ?? '';
+    
+    for (let i = 1; i <= 20; i++) {
+      const randomImageId = Math.floor(Math.random() * 1000) + 1; 
+      this.cards.push({
+        title: `Card Title ${i}`,
+        subtitle: `Card Subtitle ${i}`,
+        content: `Here's a small text description for the card content. Nothing more, nothing less.`,
+        img: `https://picsum.photos/id/${randomImageId}/200/300`
+      });
+    }
   }
 
   async login() {
@@ -50,7 +44,7 @@ export class FolderPage implements OnInit {
         buttons: ['OK'],
       });
       await alert.present();
-      this.router.navigate(['/folder/outbox']);
+      this.router.navigate(['/folder/products']);
     } else {
       const alert = await this.alertController.create({
         header: 'Login Failed',
