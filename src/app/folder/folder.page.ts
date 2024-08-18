@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { AppComponent } from '../app.component';
-
+import axios from 'axios';
 @Component({
   selector: 'app-folder',
   templateUrl: './folder.page.html',
@@ -13,6 +13,8 @@ export class FolderPage implements OnInit {
   public username: string = '';
   public password: string = '';
   public cards: any[] = [];
+  public facts:string = '';
+  public mapImage : string = '';
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -33,6 +35,10 @@ export class FolderPage implements OnInit {
         img: `https://picsum.photos/id/${randomImageId}/200/300`
       });
     }
+    if (this.folder === 'features'){
+      this.fetchFunFacts();
+    }
+    
   }
 
   async login() {
@@ -54,4 +60,24 @@ export class FolderPage implements OnInit {
       await alert.present();
     }
   }
+  async fetchFunFacts() {
+    const options = {
+      method: 'GET',
+      url: 'https://fun-facts1.p.rapidapi.com/api/fun-facts',
+      headers: {
+        'x-rapidapi-key': '9cd5302938msh2c2e211be799004p1738ccjsnce23d7a80179',
+        'x-rapidapi-host': 'fun-facts1.p.rapidapi.com'
+      }
+    };
+
+    try {
+      const response = await axios.request(options);
+      this.facts = response.data;
+      console.log(this.facts);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  
+
 }

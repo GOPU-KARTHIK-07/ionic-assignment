@@ -55,10 +55,27 @@
       <div *ngSwitchCase="'features'">
         <ion-card>
           <ion-card-header>
-            <ion-card-title>features Content</ion-card-title>
+            <ion-card-title>Features Content</ion-card-title>
           </ion-card-header>
           <ion-card-content>
-            <p>This is the content for the Features page.</p>
+           
+            <div *ngIf="facts">
+              <p>Fun Facts:</p>
+              <pre>{{ facts | json}}</pre>
+            </div>
+          </ion-card-content>
+        </ion-card>
+      </div>
+      <div *ngSwitchCase="'contact-us'">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>Contact Us</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <div *ngIf="mapImage">
+              <p>Map Tile:</p>
+              <img [src]="mapImage" alt="Map Tile" />
+            </div>
           </ion-card-content>
         </ion-card>
       </div>
