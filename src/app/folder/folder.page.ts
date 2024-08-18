@@ -63,11 +63,11 @@ export class FolderPage implements OnInit {
   async fetchFunFacts() {
     const options = {
       method: 'GET',
-      url: 'https://fun-facts1.p.rapidapi.com/api/fun-facts',
-      headers: {
-        'x-rapidapi-key': '9cd5302938msh2c2e211be799004p1738ccjsnce23d7a80179',
-        'x-rapidapi-host': 'fun-facts1.p.rapidapi.com'
-      }
+  url: 'https://jokes-always.p.rapidapi.com/common',
+  headers: {
+    'x-rapidapi-key': '9cd5302938msh2c2e211be799004p1738ccjsnce23d7a80179',
+    'x-rapidapi-host': 'jokes-always.p.rapidapi.com'
+  }
     };
 
     try {
